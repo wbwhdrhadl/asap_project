@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MyAccountScreen from "./MyAccountScreen";
 import ClosetFinderScreen from "./ClosetFinderScreen";
 import SettingsScreen from "./SettingsScreen";
+import loginScreen from "./loginScreen";
 
 const Stack = createStackNavigator();
 function SplashScreen({ navigation }) {
@@ -35,21 +36,28 @@ function MenuScreen({ navigation }) {
           style={styles.button}
           onPress={() => navigation.navigate("MyAccount")}
         >
-          <Text style={styles.buttonText}>나의 계정🔑</Text>
+          <Text style={styles.buttonText}>👤나의 계정</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("ClosetFinder")}
         >
-          <Text style={styles.buttonText}>옷 대여하기🧥</Text>
+          <Text style={styles.buttonText}>🧥옷 대여하기</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Settings")}
         >
-          <Text style={styles.buttonText}>나의 AsaP⚙️</Text>
+          <Text style={styles.buttonText}>⚙️나의 AsaP</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("login")}
+        >
+          <Text style={styles.buttonText}>🔑로그인</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -69,6 +77,7 @@ export default function App() {
         <Stack.Screen name="MyAccount" component={MyAccountScreen} />
         <Stack.Screen name="ClosetFinder" component={ClosetFinderScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="login" component={loginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
