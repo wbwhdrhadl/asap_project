@@ -18,7 +18,6 @@ const SearchBar = () => (
     />
   </View>
 );
-
 // 제품 아이템 컴포넌트
 const ProductItem = ({ name, price, likes, state, image }) => (
   <View style={styles.productItem}>

@@ -7,6 +7,7 @@ import MyAccountScreen from "./MyAccountScreen";
 import ClosetFinderScreen from "./ClosetFinderScreen";
 import SettingsScreen from "./SettingsScreen";
 import loginScreen from "./loginScreen";
+import BoardScreen from "./BoardScreen";
 
 const Stack = createStackNavigator();
 function SplashScreen({ navigation }) {
@@ -45,6 +46,12 @@ function MenuScreen({ navigation }) {
         >
           <Text style={styles.buttonText}>🧥옷 대여하기</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Board")}
+        >
+          <Text style={styles.buttonText}>게시물 쓰러 가기</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
@@ -78,6 +85,7 @@ export default function App() {
         <Stack.Screen name="ClosetFinder" component={ClosetFinderScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="login" component={loginScreen} />
+        <Stack.Screen name="Board" component={BoardScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
