@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native"; // 네비게이션 훅 임포트
 import {
   View,
   Text,
@@ -9,17 +10,30 @@ import {
 } from "react-native";
 
 const ProfileScreen = () => {
+  const navigation = useNavigation(); // 네비게이션 훅 사용
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileSection}>
         <Image
-          source={require("./my-app/assets/AsaP_image/daeun_img.jpg")} // 이미지 경로를 정확히 설정하세요
+          source={require("./my-app/assets/AsaP_image/daeun_img.jpg")}
           style={styles.profileImage}
         />
         <Text style={styles.profileName}>이다은님의 계정</Text>
-        <TouchableOpacity style={styles.profileButton}>
-          <Text>프로필 수정</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.profileButton}
+            onPress={() => navigation.navigate("profile")} // Login 스크린으로 이동
+          >
+            <Text>프로필 수정</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.profileButton}
+            onPress={() => navigation.navigate("login")} // Login 스크린으로 이동
+          >
+            <Text>로그인</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.separator} />
       </View>
 
@@ -83,6 +97,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#e7e7e7",
     padding: 10,
     marginTop: 10,
+    margin: 3,
+    borderRadius: 10,
   },
   mannerTemperature: {
     // 매너온도 스타일
@@ -131,6 +147,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#CCCCCC", // 회색 구분선 색상
     width: "100%", // 부모 컨테이너를 꽉 채우기
     marginTop: 5,
+  },
+  buttonContainer: {
+    flexDirection: "row", // 가로 방향으로 정렬
+    justifyContent: "center", // 컨테이너 내부에서 중앙 정렬
+    alignItems: "center", // 세로축 기준 중앙 정렬
+    // 필요하다면 여기에 추가적인 스타일링 (예: padding, margin)
   },
   // ... 추가 스타일 정의
 });

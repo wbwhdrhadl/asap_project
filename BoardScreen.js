@@ -22,7 +22,7 @@ const ListingForm = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>내 옷 대여 판매</Text>
+        <Text style={styles.title}>나의 옷 작성하기</Text>
       </View>
       <Text style={styles.sub1title}>사진 추가하기</Text>
       <TouchableOpacity style={styles.uploadButton}>

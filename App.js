@@ -1,19 +1,33 @@
 import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Button, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MyAccountScreen from "./MyAccountScreen";
 import ClosetFinderScreen from "./ClosetFinderScreen";
 import SettingsScreen from "./SettingsScreen";
 import loginScreen from "./loginScreen";
 import BoardScreen from "./BoardScreen";
+import profileScreen from "./profileScreen";
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function BottomTabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="ClosetFinder" component={ClosetFinderScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="MyAccount" component={MyAccountScreen} />
+    </Tab.Navigator>
+  );
+}
+
 function SplashScreen({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate("Menu");
+      navigation.navigate("Home");
     }, 3000);
     return () => clearTimeout(timer);
   }, [navigation]);
@@ -27,49 +41,7 @@ function SplashScreen({ navigation }) {
   );
 }
 
-function MenuScreen({ navigation }) {
-  return (
-    <View style={styles.menuContainer}>
-      <Text style={styles.menuTitle}>Menu</Text>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("MyAccount")}
-        >
-          <Text style={styles.buttonText}>👤나의 계정</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("ClosetFinder")}
-        >
-          <Text style={styles.buttonText}>🧥옷 대여하기</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Board")}
-        >
-          <Text style={styles.buttonText}>게시물 쓰러 가기</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Settings")}
-        >
-          <Text style={styles.buttonText}>⚙️나의 AsaP</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("login")}
-        >
-          <Text style={styles.buttonText}>🔑로그인</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-}
+// MenuScreen 정의는 동일하게 유지합니다.
 
 export default function App() {
   return (
@@ -80,30 +52,21 @@ export default function App() {
           component={SplashScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Menu" component={MenuScreen} />
-        <Stack.Screen name="MyAccount" component={MyAccountScreen} />
-        <Stack.Screen name="ClosetFinder" component={ClosetFinderScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="login" component={loginScreen} />
+        <Stack.Screen
+          name="Home"
+          component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Board" component={BoardScreen} />
+        <Stack.Screen name="login" component={loginScreen} />
+        <Stack.Screen name="profile" component={profileScreen} />
+        {/* 기존의 다른 Stack.Screen 요소들은 여기에 추가 */}
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  menuContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#F0EDE5",
-  },
-  menuTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "#001f3f",
-  },
   container: {
     flex: 1,
     backgroundColor: "#F0EDE5",

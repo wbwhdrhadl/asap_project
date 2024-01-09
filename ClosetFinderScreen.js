@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -51,6 +52,7 @@ const renderItem = ({ item }) => (
 
 // 메인 App 컴포넌트
 const App = () => {
+  const navigation = useNavigation();
   // 샘플 제품 데이터
   const products = [
     {
@@ -127,6 +129,12 @@ const App = () => {
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.productList}
       />
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate("Board")} // 여기서 BoardScreen으로 네비게이트
+      >
+        <Text style={styles.addButtonText}>+글쓰기</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -201,6 +209,28 @@ const styles = StyleSheet.create({
   productImage: {
     width: 80,
     height: 80,
+  },
+  addButton: {
+    position: "absolute", // 버튼을 화면에 고정
+    right: 30, // 오른쪽에서 30px 떨어짐
+    bottom: 30, // 아래쪽에서 30px 떨어짐
+    backgroundColor: "#F0EDE5", // 버튼 배경색
+    borderRadius: 30, // 동그란 버튼 형태
+    width: 80, // 너비 100
+    height: 40, // 높이 100
+    justifyContent: "center", // 안의 텍스트를 중앙에 위치
+    alignItems: "center", // 중앙 정렬
+    elevation: 8, // 안드로이드에서 그림자 효과
+    shadowColor: "#000", // iOS에서 그림자 색상
+    shadowOffset: { width: 0, height: 2 }, // 그림자 위치
+    shadowOpacity: 0.25, // 그림자 투명도
+    shadowRadius: 3.84, // 그림자 반경
+  },
+  addButtonText: {
+    color: "gray", // 텍스트 색상
+    fontSize: 16, // 폰트 크기
+    textAlign: "center",
+    fontWeight: "bold", // 텍스트 중앙 정렬
   },
 });
 
