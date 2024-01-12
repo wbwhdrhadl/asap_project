@@ -5,41 +5,58 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  TextInput,
   TouchableOpacity,
   Image,
+  // 여기서 navigation을 제거하세요
 } from "react-native";
-
 // 검색 바 컴포넌트
 
 // 제품 아이템 컴포넌트
 const ProductItem = ({ id, name, price, likes, image, navigation }) => (
   <View style={styles.productItem}>
-    <Image source={image} style={styles.productImage} />
-    <View style={styles.productDetails}>
-      <Text style={styles.productName}>{name}</Text>
-      <Text style={styles.productPrice}>{price}</Text>
-      <Text style={styles.productLikes}>{likes}</Text>
-    </View>
-    <TouchableOpacity style={styles.closetButton}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("Chat", {
+          id,
+          name,
+          price,
+          likes,
+          image,
+        })
+      }
+      style={{ flexDirection: "row", alignItems: "center" }}
+    >
+      <Image source={image} style={styles.productImage} />
+      <View style={{ flex: 1, justifyContent: "center", marginLeft: 10 }}>
+        <Text style={styles.productName}>{name}</Text>
+        <Text style={styles.productPrice}>{price}</Text>
+        <Text style={styles.productLikes}>{likes}</Text>
+      </View>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.closetButton}
+      onPress={() => navigation.navigate("seecloset", { id, name })}
+    >
       <Text style={styles.closetButtonText}>옷장 보러가기</Text>
     </TouchableOpacity>
   </View>
 );
 // 제품 목록을 위한 플랫리스트 렌더 아이템 함수
-const renderItem = ({ item }) => (
-  <ProductItem
-    id={item.id}
-    name={item.name}
-    price={item.price}
-    likes={item.likes}
-    image={item.image}
-  />
-);
 
 // 메인 App 컴포넌트
 const App = () => {
   const navigation = useNavigation();
+
+  const renderItem = ({ item }) => (
+    <ProductItem
+      id={item.id}
+      name={item.name}
+      price={item.price}
+      likes={item.likes}
+      image={item.image}
+      navigation={navigation} // 여기에서 navigation을 전달합니다
+    />
+  );
   // 샘플 제품 데이터
   const products = [
     {
@@ -86,11 +103,10 @@ const App = () => {
 // 스타일 정의
 const styles = StyleSheet.create({
   productItem: {
-    flexDirection: "row", // 항목을 가로로 배열합니다.
-    justifyContent: "space-between", // 세부 정보와 이미지를 양쪽 끝으로 정렬합니다.
-    alignItems: "center", // 세로 축(center)을 기준으로 아이템을 중앙 정렬합니다.
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: "white",
-    padding: 20,
+    padding: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "#cccccc",
   },
@@ -125,14 +141,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   productImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
+    width: 90,
+    height: 90,
+    borderRadius: 45,
   },
   closetButton: {
-    backgroundColor: "#F0EDE5", // 버튼 배경색
+    // 버튼 스타일은 그대로 유지하거나 필요에 따라 수정할 수 있습니다.
+    marginTop: 4, // 버튼을 좀 더 정보 아래에 위치시키기 위해 marginTop을 추가했습니다.
+    backgroundColor: "#F0EDE5",
     padding: 10,
     borderRadius: 5,
+    marginLeft: -100,
   },
   closetButtonText: {
     color: "black", // 텍스트 색상

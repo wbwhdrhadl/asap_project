@@ -63,6 +63,11 @@ const ChatApp = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
+      <Text style={styles.chatHeader}>
+        채팅방에서 바로 송금 할 수 있어요. 금융 사기,계좌 이체를 조심하세요.
+        금융 범죄의 대상이 될 수 있습니다.
+      </Text>
+      {/* 새로 추가한 부분 */}
       <FlatList
         data={messages}
         renderItem={renderMessage}
@@ -104,11 +109,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     height: 40,
     marginRight: 10,
+    marginBottom: 30,
   },
   sendButton: {
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
+    marginBottom: 30,
   },
   sendButtonText: {
     color: "#007bff",
@@ -143,6 +150,13 @@ const styles = StyleSheet.create({
   },
   otherMessageText: {
     color: "black",
+  },
+  chatHeader: {
+    padding: 20,
+    backgroundColor: "white",
+    textAlign: "center",
+    fontSize: 16,
+    marginBottom: 10,
   },
 });
 

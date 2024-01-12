@@ -10,7 +10,9 @@ import SettingsScreen from "./SettingsScreen";
 import loginScreen from "./loginScreen";
 import BoardScreen from "./BoardScreen";
 import profileScreen from "./profileScreen";
+import Detailchatting from "./Detailchatting";
 import chattingScreen from "./chattingScreen";
+import seeclosetScreen from "./seeclosetScreen";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,9 +21,9 @@ function BottomTabNavigator() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="ClosetFinder" component={ClosetFinderScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
       <Tab.Screen name="chatting" component={chattingScreen} />
       <Tab.Screen name="MyAccount" component={MyAccountScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
@@ -62,6 +64,9 @@ export default function App() {
         <Stack.Screen name="Board" component={BoardScreen} />
         <Stack.Screen name="login" component={loginScreen} />
         <Stack.Screen name="profile" component={profileScreen} />
+        <Stack.Screen name="Chat" component={Detailchatting} />
+        <Stack.Screen name="seecloset" component={seeclosetScreen} />
+
         {/* 기존의 다른 Stack.Screen 요소들은 여기에 추가 */}
       </Stack.Navigator>
     </NavigationContainer>
