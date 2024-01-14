@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -10,6 +11,7 @@ import {
 } from "react-native";
 
 const ProductScreen = ({ route }) => {
+  const navigation = useNavigation();
   // Provide default values if productData is not passed
   const productData = route.params?.productData || {
     userName: "패션왕 이다은",
@@ -48,10 +50,13 @@ const ProductScreen = ({ route }) => {
         </Text>
       </View>
       <TouchableOpacity style={styles.purchaseButton}>
-        <Text style={styles.purchaseButtonText}>구매하기</Text>
+        <Text style={styles.purchaseButtonText}>대여하기</Text>
       </TouchableOpacity>
       {/* Description Box */}
-      <TouchableOpacity style={styles.chatButton}>
+      <TouchableOpacity
+        style={styles.chatButton}
+        onPress={() => navigation.navigate("Chat")}
+      >
         <Text style={styles.chatButtonText}>채팅하기</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -103,15 +108,17 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   purchaseButton: {
-    backgroundColor: "orange",
+    backgroundColor: "#F5DEB3",
     borderRadius: 5,
     padding: 15,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   purchaseButtonText: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
   },
   descriptionBox: {
@@ -129,15 +136,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   chatButton: {
-    backgroundColor: "#FF8C00", // Example color for chat button
+    backgroundColor: "#e6daa6", // Example color for chat button
     borderRadius: 5,
     padding: 15,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   chatButtonText: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
   },
 });
