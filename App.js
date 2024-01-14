@@ -13,6 +13,7 @@ import profileScreen from "./profileScreen";
 import Detailchatting from "./Detailchatting";
 import chattingScreen from "./chattingScreen";
 import seeclosetScreen from "./seeclosetScreen";
+import clothexplain from "./clothexplain";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,6 +67,7 @@ export default function App() {
         <Stack.Screen name="profile" component={profileScreen} />
         <Stack.Screen name="Chat" component={Detailchatting} />
         <Stack.Screen name="seecloset" component={seeclosetScreen} />
+        <Stack.Screen name="clothexplain" component={clothexplain} />
 
         {/* 기존의 다른 Stack.Screen 요소들은 여기에 추가 */}
       </Stack.Navigator>

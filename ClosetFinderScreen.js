@@ -20,24 +20,39 @@ const SearchBar = () => (
   </View>
 );
 // 제품 아이템 컴포넌트
-const ProductItem = ({ name, price, likes, state, image }) => (
-  <View style={styles.productItem}>
-    <View style={styles.productDetails}>
-      <Text style={styles.productName}>{name}</Text>
-      <Text style={styles.productPrice}>{price}</Text>
-      <Text
-        style={[
-          styles.productState,
-          state === "대여중" ? styles.rented : styles.available,
-        ]}
-      >
-        {state}
-      </Text>
-      <Text style={styles.productLikes}>♥좋아요{likes}</Text>
-    </View>
-    <Image source={image} style={styles.productImage} />
-  </View>
-);
+const ProductItem = ({ name, price, likes, state, image }) => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity
+      style={styles.productItem}
+      onPress={() =>
+        navigation.navigate("clothexplain", {
+          name,
+          price,
+          likes,
+          state,
+          image,
+        })
+      } // 여기서 DetailCloth 페이지로 네비게이트
+    >
+      <View style={styles.productDetails}>
+        <Text style={styles.productName}>{name}</Text>
+        <Text style={styles.productPrice}>{price}</Text>
+        <Text
+          style={[
+            styles.productState,
+            state === "대여중" ? styles.rented : styles.available,
+          ]}
+        >
+          {state}
+        </Text>
+        <Text style={styles.productLikes}>♥좋아요{likes}</Text>
+      </View>
+      <Image source={image} style={styles.productImage} />
+    </TouchableOpacity>
+  );
+};
 
 // 제품 목록을 위한 플랫리스트 렌더 아이템 함수
 const renderItem = ({ item }) => (
