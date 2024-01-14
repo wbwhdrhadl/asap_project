@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
+  Modal,
   View,
   Text,
   Image,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+import { Calendar } from "react-native-calendars";
 
 const ProductScreen = ({ route }) => {
   const navigation = useNavigation();
@@ -20,6 +22,18 @@ const ProductScreen = ({ route }) => {
     timeSincePost: "20 minutes ago",
     description: "여성 가방",
     // Add any other properties that are expected to be used
+  };
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selectedDates, setSelectedDates] = useState({});
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const onDayPress = (day) => {
+    // Handle the logic to select start and end date
+    // This is a simple example, you might need more complex logic
+    setSelectedDates({ [day.dateString]: { selected: true } });
   };
 
   return (
@@ -49,9 +63,26 @@ const ProductScreen = ({ route }) => {
           알려드릴게요. 털 손상이나 색깔 변색시 보상금 발생합니다.
         </Text>
       </View>
-      <TouchableOpacity style={styles.purchaseButton}>
-        <Text style={styles.purchaseButtonText}>대여하기</Text>
+      <TouchableOpacity style={styles.purchaseButton} onPress={toggleModal}>
+        <Text style={styles.purchaseButtonText}>문의하기</Text>
       </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModal}
+      >
+        <View style={styles.modalView}>
+          <Calendar
+            onDayPress={onDayPress}
+            markedDates={selectedDates}
+            // More properties as needed
+          />
+          <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
+            <Text>대여하러 가기</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
       {/* Description Box */}
       <TouchableOpacity
         style={styles.chatButton}
@@ -148,6 +179,29 @@ const styles = StyleSheet.create({
   chatButtonText: {
     color: "black",
     fontWeight: "bold",
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    width: "auto", // 너비를 자동으로 설정
+    height: "auto", // 높이를 자동으로 설정
+    justifyContent: "center",
+    alignItems: "center",
+    // 필요에 따라 패딩이나 여백 조정
+  },
+  closeButton: {
+    backgroundColor: "#ddd",
+    padding: 10,
+    marginTop: 10,
   },
 });
 
