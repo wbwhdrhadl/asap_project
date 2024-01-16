@@ -1,13 +1,13 @@
-package asap.asapproject_backk;
+package asap.asap_project_back;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AsapProjectBackkApplication {
+public class AsapProjectBackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AsapProjectBackkApplication.class, args);
+		SpringApplication.run(AsapProjectBackApplication.class, args);
 	}
 
 }
