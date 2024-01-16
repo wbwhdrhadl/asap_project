@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AsapProjectBackkApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AsapProjectBackkApplication.class, args);
 	}
 
