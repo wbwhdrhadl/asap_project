@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'asap.asap-project_back' is invalid and this project uses 'asap.asapproject_back' instead.
+* The original package name 'asap.asap-project_backk' is invalid and this project uses 'asap.asapproject_backk' instead.
 
 # Getting Started
 

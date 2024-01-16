@@ -1,10 +1,10 @@
-package asap.asapproject_back;
+package asap.asapproject_backk;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AsapProjectBackApplicationTests {
+class AsapProjectBackkApplicationTests {
 
 	@Test
 	void contextLoads() {
